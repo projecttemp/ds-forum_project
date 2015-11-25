@@ -5,9 +5,13 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-# Posting Page
+# Posting Pages
 GET     /post                       controllers.Application.postPage()
 POST    /post                       controllers.Application.createPost()
+
+# Commenting Pages
+GET     /comment                    controllers.Application.commentPage()
+POST    /comment                    controllers.Application.createComment()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -9,6 +9,8 @@ import models.*;
 import views.html.*;
 
 public class Application extends Controller {
+    public static int postCount;
+    public static FileControl fc;
 
     public Result index() {
         return ok(index.render("Your new application is ready."));
@@ -16,6 +18,10 @@ public class Application extends Controller {
 
     public Result postPage() {
         return ok(postPage.render(form(Post.class)));
+    }
+    
+    public Result commentPage() {
+        return ok(commentPage.render(form(Comment.class)));
     }
     
     public Result createPost() {
@@ -39,9 +45,36 @@ public class Application extends Controller {
         }
     }
     
+    public Result createComment() {
+        Form<Comment> formComment = form(Comment.class).bindFromRequest();
+        
+        if (formComment.hasErrors()) {
+            return badRequest(commentPage.render(formComment));
+        } else {
+            Comment cmt = formComment.get();
+            
+            session().clear();
+            session("user", cmt.user);
+            session("content", cmt.content);
+            
+            System.out.println("Comment @" + cmt.user + " =" + cmt.content);
+            
+            return redirect(
+                routes.Application.commentPage()
+            );
+        }
+    }
+    
     public static class Post {
         public String user;
         public String title;
+        public String content;
+    }
+    
+    public static class Comment {
+        public int PostID;
+        public String postTitle;
+        public String user;
         public String content;
     }
 }
