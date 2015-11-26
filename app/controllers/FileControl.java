@@ -67,4 +67,56 @@ public class FileControl {
             return null;
         }
     }
+    
+    public RealPost makePost(File in, int id) {
+        try {
+            BufferedReader input = new BufferedReader(new FileReader (in));
+            String owner, title, content = "";
+            String line;
+            
+            owner = input.readLine();
+            if (owner == null)
+                return null;
+            
+            title = input.readLine();
+            if (title == null)
+                return null;
+            
+            line = input.readLine();
+            while (line != null) {
+                content = content + line;
+                line = input.readLine();
+            }
+            
+            RealPost result = new RealPost(owner, title, content, id);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    public RealComment makeComment(File in, int id) {
+        try {
+            BufferedReader input = new BufferedReader(new FileReader (in));
+            String owner, content = "";
+            String line;
+            
+            owner = input.readLine();
+            if (owner == null)
+                return null;
+            
+            line = input.readLine();
+            while (line != null) {
+                content = content + line;
+                line = input.readLine();
+            }
+            
+            RealComment result = new RealComment(owner, content, id);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }
