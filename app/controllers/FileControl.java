@@ -95,6 +95,37 @@ public class FileControl {
         }
     }
     
+    public LinkedList<RealComment> readCommentList (RealPost post) {
+        try {
+            LinkedList<RealComment> list = new LinkedList<RealComment>();
+            String parentPath = filePath + post.id;
+            File postFolder;
+            String path;
+            File temp;
+            
+            postFolder = new File(parentPath);
+            if (!postFolder.isDirectory())
+                return null;
+            
+            parentPath = parentPath + "\\";
+            for (final File entry : postFolder.listFiles()) {
+                path = entry.getName();
+                if ((path.length() > 12) && (path.substring(path.length()-12).equals(".postcomment"))) {
+                    path = parentPath + path;
+                    temp = new File(path);
+                    
+                    list.add(readComment(temp, post));
+                }
+            }
+            
+            System.out.println("There are " + list.size() + " comments found and added.");
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     private RealPost readPost(File in) {
         try {
             BufferedReader input = new BufferedReader(new FileReader (in));
@@ -134,17 +165,12 @@ public class FileControl {
         }
     }
     
-    private RealComment readComment(File in) {
+    private RealComment readComment(File in, RealPost m) {
         try {
             BufferedReader input = new BufferedReader(new FileReader (in));
             String owner, content = "";
             String line;
-            int id, pid;
-            
-            line = input.readLine();
-            if (line == null)
-                return null;
-            pid = Integer.parseInt(line);
+            int id;
             
             line = input.readLine();
             if (line == null)
@@ -161,7 +187,7 @@ public class FileControl {
                 line = input.readLine();
             }
             
-            RealComment result = new RealComment(owner, content, id, pid);
+            RealComment result = new RealComment(owner, content, id, m);
             return result;
         } catch (Exception e) {
             System.out.println(e);
@@ -203,7 +229,7 @@ public class FileControl {
     
     public boolean writeComment(RealComment comment) {
         try {
-            String path = filePath + comment.postId;
+            String path = filePath + comment.main.id;
             File out = new File(path);
             if (!out.isDirectory()) {
                 if (out.exists())
@@ -218,8 +244,7 @@ public class FileControl {
             out.createNewFile();
             
             PrintWriter fout = new PrintWriter(out);
-            
-            fout.println(comment.postId);
+
             fout.println(comment.id);
             fout.println(comment.owner);
             fout.println(comment.content);
