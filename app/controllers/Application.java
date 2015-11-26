@@ -8,9 +8,12 @@ import static play.data.Form.*;
 import models.*;
 import views.html.*;
 
+import java.util.*;
+
 public class Application extends Controller {
     public static int postCount;
     public static FileControl fc;
+    public static LinkedList<RealPost> posts;
 
     public Result index() {
         return ok(index.render("Your new application is ready."));
@@ -30,12 +33,18 @@ public class Application extends Controller {
         if (formPost.hasErrors()) {
             return badRequest(postPage.render(formPost));
         } else {
+            int postId = posts.size();
             Post posted = formPost.get();
             
-            session().clear();
-            session("user", posted.user);
-            session("title", posted.title);
-            session("content", posted.content);
+            RealPost result = new RealPost(posted.user, posted.title, posted.content, postId, 0);
+
+            if (fc.writePost(result))
+                posts.add(result);
+            
+            //session().clear();
+            //session("user", posted.user);
+            //session("title", posted.title);
+            //session("content", posted.content);
             
             System.out.println("Post @" + posted.user + " #" + posted.title + " =" + posted.content);
             
