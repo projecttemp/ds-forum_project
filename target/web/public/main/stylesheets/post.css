@@ -1,0 +1,82 @@
+
+h1 {
+    text-align: center;
+    border: 1px solid #444444;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.main_body {
+    background-color: #999999;
+}
+
+.inputs {
+    margin-left: 50px;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_title {
+    font-size: 20px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+    text-decoration: underline;
+}
+
+.post_title_input {
+    position: absolute;
+    left: 175px;
+    vertical-align: top;
+    padding:5px;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color:#DDDDDD;
+}
+
+.post_user {
+    font-size: 20px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+    text-decoration: underline;
+}
+
+.post_user_input {
+    position: absolute;
+    left: 175px;
+    vertical-align: top;
+    padding:5px;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color:#DDDDDD;
+}
+
+.post_message {
+    font-size: 20px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+    text-decoration: underline;
+}
+
+.post_message_input {
+    position: absolute;
+    left: 175px;
+    vertical-align: top;
+    background-color: #333333;
+    color:#DDDDDD;
+    width: 400px; 
+    max-width: 400px; 
+    height: 153px; 
+    line-height: 150%;
+}
+
+.post_button {
+    margin-left: 50px;
+    padding:5px;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color:#DDDDDD;
+    text-decoration:none;
+}

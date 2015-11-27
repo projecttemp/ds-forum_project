@@ -1,0 +1,41 @@
+New log file opened at Fri Nov 27 09:41:03 EST 2015 by 11956@UOSL15-R90266GD
+Taking next connection to: 59130
+New client attempting to connect on port: 59131-59130
+  Address = /10.20.24.157:59130
+This client on port 59131 has uuid e85f5e6b-8d6c-4488-8cb8-769dea3d5ff4 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-e85f5e6b-8d6c-4488-8cb8-769dea3d5ff4
+Taking next connection to: 59130
+New client attempting to connect on port: 59133-59130
+  Address = /10.20.24.157:59130
+Handshake exception on socket: 59133
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.net.SocketException: Software caused connection abort: recv failed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readInt(DataInputStream.java:387)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 59130
+New client attempting to connect on port: 59134-59130
+  Address = /10.20.24.157:59130
+This client on port 59134 has uuid c4e52239-f7ca-42e8-825f-628120d6b0e4 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: activator-e85f5e6b-8d6c-4488-8cb8-769dea3d5ff4, play-fork-run-c4e52239-f7ca-42e8-825f-628120d6b0e4
+Taking next connection to: 59130
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 59130
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+1 daemon clients are connected.
+Server socket thread exiting.
+1 clients open, will close them...
+All client sockets have been closed.
+Closing the 11956@UOSL15-R90266GD logs at Fri Nov 27 09:47:40 EST 2015, goodbye.

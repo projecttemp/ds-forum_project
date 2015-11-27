@@ -1,0 +1,7 @@
+[error] C:\Users\100481892\ds-forum_project\app\views\main.scala.html:26: '(' expected but ')' found.
+[error]             @if (@Application.posts.size() == 0) {
+[error]                                         ^
+[error] C:\Users\100481892\ds-forum_project\app\views\main.scala.html:67: illegal start of simple expression
+[error] </html>
+[error]        ^
+[error] two errors found

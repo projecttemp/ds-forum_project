@@ -1,0 +1,5 @@
+[debug] Copy resource mappings: 
+[debug] 	(C:\Users\100481892\ds-forum_project\conf\application.conf,C:\Users\100481892\ds-forum_project\target\scala-2.11\classes\application.conf)
+[debug] 	(C:\Users\100481892\ds-forum_project\conf\desktop.ini,C:\Users\100481892\ds-forum_project\target\scala-2.11\classes\desktop.ini)
+[debug] 	(C:\Users\100481892\ds-forum_project\conf\logback.xml,C:\Users\100481892\ds-forum_project\target\scala-2.11\classes\logback.xml)
+[debug] 	(C:\Users\100481892\ds-forum_project\conf\routes,C:\Users\100481892\ds-forum_project\target\scala-2.11\classes\routes)
