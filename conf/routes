@@ -4,14 +4,17 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /:post                      controllers.Application.newCommentClick(post: Integer)
 
-# Posting Pages
+# Main Page
+GET     /main                       controllers.Application.mainPage()
+GET     /main:post                  controllers.Application.newCommentClick(post: Integer)
+
+# Posting Page
 GET     /post                       controllers.Application.postPage()
 POST    /post                       controllers.Application.createPost()
 
-# Commenting Pages
-GET     /comment                    controllers.Application.commentPage()
+# Commenting Page
+GET     /comment                    controllers.Application.commentPage(id: Integer ?= -1)
 POST    /comment                    controllers.Application.createComment()
 
 # Map static resources from the /public folder to the /assets URL path

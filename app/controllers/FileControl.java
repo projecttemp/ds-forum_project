@@ -95,10 +95,10 @@ public class FileControl {
         }
     }
     
-    public LinkedList<RealComment> readCommentList (RealPost post) {
+    public LinkedList<RealComment> readCommentList (int postID) {
         try {
             LinkedList<RealComment> list = new LinkedList<RealComment>();
-            String parentPath = filePath + post.id;
+            String parentPath = filePath + postID;
             File postFolder;
             String path;
             File temp;
@@ -114,7 +114,7 @@ public class FileControl {
                     path = parentPath + path;
                     temp = new File(path);
                     
-                    list.add(readComment(temp, post));
+                    list.add(readComment(temp, postID));
                 }
             }
             
@@ -165,7 +165,7 @@ public class FileControl {
         }
     }
     
-    private RealComment readComment(File in, RealPost m) {
+    private RealComment readComment(File in, int m) {
         try {
             BufferedReader input = new BufferedReader(new FileReader (in));
             String owner, content = "";
@@ -229,7 +229,7 @@ public class FileControl {
     
     public boolean writeComment(RealComment comment) {
         try {
-            String path = filePath + comment.main.id;
+            String path = filePath + comment.mainID;
             File out = new File(path);
             if (!out.isDirectory()) {
                 if (out.exists())

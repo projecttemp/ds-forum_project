@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.*;
+import play.data.validation.*;
 import static play.data.Form.*;
 
 import models.*;
@@ -16,6 +17,14 @@ public class Application extends Controller {
     public static LinkedList<RealPost> posts;
 
     public Result index() {
+        //return ok(index.render("Distributed System Forum"));
+        
+        return redirect(
+            routes.Application.mainPage()
+        );
+    }
+    
+    public Result mainPage() {
         return ok(main.render("Distributed System Forum"));
     }
 
@@ -23,29 +32,38 @@ public class Application extends Controller {
         return ok(postPage.render(form(Post.class)));
     }
     
-    public Result commentPage() {
-        //return ok(commentPage.render(form(Comment.class)));
+    public Result commentPage(Integer id) {
+        //System.out.println("#2 This post's id is " + id);
         
         Form<Comment> cmtForm = new Form<Comment>(Comment.class);
         Comment cmt = new Comment();
+        cmt.mainPostID = id;
         
-        cmt.user = "God";
-        cmt.content = "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
-        cmt.postTitle = "Hello FUCKERS";
+        if (id >= 0) {
+            
+            RealPost rp = null;
+            
+            for (RealPost p : posts) {
+                if (p.id == id) {
+                    rp = p;
+                    break;
+                }
+            }
+            
+            if (rp != null)
+                cmt.postTitle = rp.title;
+        }
         
         cmtForm = cmtForm.fill(cmt);
-        
         return ok(commentPage.render(cmtForm));
     }
     
-    public Result newCommentClick(Integer post) {
-        System.out.println("This post's id is " + post);
-        //for (p : posts) {
-            
-        //}
+    public Result newCommentClick(Integer postID) {
+        //System.out.println("#1 This post's id is " + postID);
         
-        
-        return ok();
+        return redirect(
+            routes.Application.commentPage(postID)
+        );
     }
     
     public Result createPost() {
@@ -62,35 +80,51 @@ public class Application extends Controller {
             if (fc.writePost(result))
                 posts.add(result);
             
-            //session().clear();
-            //session("user", posted.user);
-            //session("title", posted.title);
-            //session("content", posted.content);
-            
             System.out.println("Post @" + posted.user + " #" + posted.title + " =" + posted.content);
             
             return redirect(
-                routes.Application.postPage()
+                routes.Application.mainPage()
             );
         }
     }
     
     public Result createComment() {
         Form<Comment> formComment = form(Comment.class).bindFromRequest();
-        
+
         if (formComment.hasErrors()) {
+            Comment cmt = new Comment();
+            cmt.postTitle = "***Please go back to main page and try again!***";
+            formComment = formComment.fill(cmt);
+            
             return badRequest(commentPage.render(formComment));
         } else {
             Comment cmt = formComment.get();
             
-            //session().clear();
-            //session("user", cmt.user);
-            //session("content", cmt.content);
+            RealComment result = null;
+            RealPost rp = null;
             
-            System.out.println("Comment @" + cmt.user + " =" + cmt.content);
+            for (RealPost p : posts) {
+                if (p.id == cmt.mainPostID) {
+                    rp = p;
+                    break;
+                }
+            }
+            
+            if (rp != null) {
+                result = new RealComment(cmt.user, cmt.content, rp.commentCount, cmt.mainPostID);
+                rp.commentCount++;
+            }
+            
+            if (result != null) {
+                if (fc.writeComment(result)) {
+                    fc.writePost(rp);
+                }
+            }
+            
+            System.out.println("Comment @" + cmt.user + " =" + cmt.content + "#" + cmt.mainPostID);
             
             return redirect(
-                routes.Application.commentPage()
+                routes.Application.mainPage()
             );
         }
     }
@@ -105,6 +139,13 @@ public class Application extends Controller {
         public String user;
         public String content;
         public String postTitle;
-        public RealPost mainPost;
+        public int mainPostID;
+        
+        public String validate() {
+            if (mainPostID < 0)
+                return "Please return to main page and try again!";
+                
+            return null;
+        }
     }
 }
