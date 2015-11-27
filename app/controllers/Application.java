@@ -16,7 +16,7 @@ public class Application extends Controller {
     public static LinkedList<RealPost> posts;
 
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(main.render("Distributed System Forum"));
     }
 
     public Result postPage() {
@@ -24,7 +24,28 @@ public class Application extends Controller {
     }
     
     public Result commentPage() {
-        return ok(commentPage.render(form(Comment.class)));
+        //return ok(commentPage.render(form(Comment.class)));
+        
+        Form<Comment> cmtForm = new Form<Comment>(Comment.class);
+        Comment cmt = new Comment();
+        
+        cmt.user = "God";
+        cmt.content = "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
+        cmt.postTitle = "Hello FUCKERS";
+        
+        cmtForm = cmtForm.fill(cmt);
+        
+        return ok(commentPage.render(cmtForm));
+    }
+    
+    public Result newCommentClick(Integer post) {
+        System.out.println("This post's id is " + post);
+        //for (p : posts) {
+            
+        //}
+        
+        
+        return ok();
     }
     
     public Result createPost() {
@@ -62,9 +83,9 @@ public class Application extends Controller {
         } else {
             Comment cmt = formComment.get();
             
-            session().clear();
-            session("user", cmt.user);
-            session("content", cmt.content);
+            //session().clear();
+            //session("user", cmt.user);
+            //session("content", cmt.content);
             
             System.out.println("Comment @" + cmt.user + " =" + cmt.content);
             
@@ -81,9 +102,9 @@ public class Application extends Controller {
     }
     
     public static class Comment {
-        public int PostID;
-        public String postTitle;
         public String user;
         public String content;
+        public String postTitle;
+        public RealPost mainPost;
     }
 }

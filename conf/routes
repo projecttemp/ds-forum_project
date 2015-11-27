@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET     /:post                      controllers.Application.newCommentClick(post: Integer)
 
 # Posting Pages
 GET     /post                       controllers.Application.postPage()
