@@ -14,17 +14,17 @@
             
             <label>
                 <span>Title:</span>
-                <input type="text" name="title" placeholder="" value="@form("postTitle").value" disabled>
+                <input type="text" name="title" value="@form("postTitle").value" disabled>
             </label>
             
             <label>
                 <span>Username:</span>
-                <input type="text" name="user" placeholder="" value="@form("user").value" required>
+                <input type="text" name="user" value="@form("user").value" required>
             </label>
             
             <label>
                 <span>Message:</span>
-                <textarea style="resize:none" maxlength="500000" name="content" placeholder="" value="" required>@form("content").value</textarea>
+                <textarea style="resize:none" maxlength="500000" name="content" required>@form("content").value</textarea>
             </label>
             
             <input type="hidden" name="mainPostID" value="@form("mainPostID").value">
