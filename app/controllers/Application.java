@@ -15,7 +15,8 @@ public class Application extends Controller {
     public static int postCount;
     public static FileControl fc;
     public static LinkedList<RealPost> posts;
-
+    public static LinkedList<LinkedList<RealComment>> comments;
+    
     public Result index() {
         //return ok(index.render("Distributed System Forum"));
         
@@ -77,8 +78,10 @@ public class Application extends Controller {
             
             RealPost result = new RealPost(posted.user, posted.title, posted.content, postId, 0);
 
-            if (fc.writePost(result))
+            if (fc.writePost(result)) {
                 posts.add(result);
+                comments.add(result.id, new LinkedList<RealComment>());
+            }
             
             System.out.println("Post @" + posted.user + " #" + posted.title + " =" + posted.content);
             
@@ -118,6 +121,7 @@ public class Application extends Controller {
             if (result != null) {
                 if (fc.writeComment(result)) {
                     fc.writePost(rp);
+                    comments.get(rp.id).add(result);
                 }
             }
             

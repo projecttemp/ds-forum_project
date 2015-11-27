@@ -1,0 +1,113 @@
+
+h1 {
+    text-align: center;
+    border: 1px solid #444444;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+h2 {
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+h3 {
+    text-align: left;
+    color: #222222;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: "Times New Roman";
+}
+
+.main_body {
+    background-color: #999999;
+}
+
+.all_posts {
+    margin-left: 50px;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_main {
+    margin-left: 75px;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_id {
+    margin-left: -20px;
+    font-size: 14px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_title {
+    font-size: 28px;
+    text-decoration: underline;
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_user_general {
+    margin-left: 20px; 
+    font-size: 14px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_user_specific {
+    font-size: 20px; 
+    text-align: left;
+    color: #333333;
+    font-family: "Times New Roman";
+}
+
+.post_content {
+    font-size: 20px; 
+    text-align: left;
+    margin-left: 40px;
+    color: #333333;
+    font-family: "Times New Roman";
+}
+
+.post_comment_full {
+    margin-left: 20px; 
+    text-align: left;
+}
+
+.post_comment_user {
+    font-size: 14px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.post_comment_content {
+    font-size: 20px; 
+    text-align: left;
+    color: #222222;
+    font-family: "Times New Roman";
+}
+
+.new_comment_button {
+    margin-left: 75px;
+    padding:5px;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color:#DDDDDD;
+    text-decoration:none;
+}
+
+.new_post_button {
+    margin-left: 50px;
+    padding:5px;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color:#DDDDDD;
+    text-decoration:none;
+}

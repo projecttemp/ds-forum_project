@@ -4,34 +4,52 @@
 
 <html lang="en">
     <head>
-        <title>Commenting!</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/commentPage.css")">
+        <title>Add A Comment</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/post.css")">
         <script src="@routes.Assets.versioned("javascripts/commentPage.js")" type="text/javascript"></script>
     </head>
-    <body>
+    <body class="main_body">
         @helper.form(routes.Application.createComment) {
-            <h1>Commenting</h1>
+            <div>
+                <h1>Add A Comment</h1>
+            </div>
             
-            <label>
-                <span>Title:</span>
-                <input type="text" name="title" value="@form("postTitle").value" disabled>
-            </label>
+            <div class = "inputs">
+                <label>
+                    <span class = "post_title">Response To:</span>
+                    <input class="post_title_input" type="text" name="title" placeholder="Post Title" value="@form("postTitle").value" disabled>
+                </label>
+                
+                <br>
+                <br>
+                
+                <label>
+                    <span class = "post_user">Username:</span>
+                    <input class="post_user_input" type="text" name="user" placeholder="John Doe" value="@form("user").value" required>
+                </label>
+                
+                <br>
+                <br>
+                
+                <label>
+                    <span class = "post_message">Message:</span>
+                    <textarea class="post_message_input" style="resize:none" maxlength="500000" name="content" placeholder="Post Content" value="" required>@form("content").value</textarea>
+                </label>
+                
+                <input type="hidden" name="mainPostID" value="@form("mainPostID").value">
+                
+            </div>
             
-            <label>
-                <span>Username:</span>
-                <input type="text" name="user" value="@form("user").value" required>
-            </label>
-            
-            <label>
-                <span>Message:</span>
-                <textarea style="resize:none" maxlength="500000" name="content" required>@form("content").value</textarea>
-            </label>
-            
-            <input type="hidden" name="mainPostID" value="@form("mainPostID").value">
-            
-            <p>
-                <button type="submit">Comment!</button>
-            </p>
+            <div id="new_post">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button class="post_button" type="submit">Post Comment!</button>
+                
+            </div>
         }
     </body>
 </html>
